@@ -1,0 +1,25 @@
+{
+  "name": "Find out the HTML structure",
+  "description": "Find out the HTML structure of the website you need, such as Clone Coding, through the App.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "/js/background.js"
+  },
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/images/favicon16.png",
+      "32": "/images/favicon32.png",
+      "48": "/images/favicon48.png",
+      "128": "/images/favicon128.png"
+    }
+  },
+  "icons": {
+    "16": "/images/favicon16.png",
+    "32": "/images/favicon32.png",
+    "48": "/images/favicon48.png",
+    "128": "/images/favicon128.png"
+  }
+}
