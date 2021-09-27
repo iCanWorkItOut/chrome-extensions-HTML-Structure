@@ -23,7 +23,28 @@ buttons.forEach((btn) =>
   }),
 );
 
-// backgroundColor Test
+// HTML 구조에서 자주 쓰이는 요소 테두리 변경
 function setBorderColor(borderColor) {
-  document.body.style.backgroundColor = borderColor;
+  [
+    'div',
+    'span',
+    'ul',
+    'li',
+    'dd',
+    'dl',
+    'section',
+    'h1',
+    'a',
+    'img',
+    'form',
+    'button',
+    'header',
+    'footer',
+    'input',
+    'p',
+  ].forEach((e) => {
+    document.querySelectorAll(e).forEach((element) => {
+      element.style.outline = `1px solid ${borderColor}`;
+    });
+  });
 }
