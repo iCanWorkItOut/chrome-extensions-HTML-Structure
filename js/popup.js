@@ -10,20 +10,28 @@ chrome.storage.sync.get('colorList', ({ colorList }) => {
   }
 });
 
-// btn 클릭 시 현재 탭 페이지를 대상으로 setBorderColor함수 호출
+// btn 클릭 시 현재 탭 페이지를 대상으로 setBorderColor(or removeBorderColor)함수 호출
 buttons.forEach((btn) =>
   btn.addEventListener('click', async () => {
-    const borderColor = btn.querySelector('.color').style.backgroundColor;
+    btn.classList.toggle('clicked');
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      function: setBorderColor,
-      args: [borderColor],
-    });
+    if (btn.classList.contains('clicked')) {
+      const borderColor = btn.querySelector('.color').style.backgroundColor;
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        function: setBorderColor,
+        args: [borderColor],
+      });
+    } else {
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        function: removeBorderColor,
+      });
+    }
   }),
 );
 
-// HTML 구조에서 자주 쓰이는 요소 테두리 변경
+// HTML 구조를 확인하기 위해 자주 쓰이는 요소 테두리 변경
 function setBorderColor(borderColor) {
   [
     'div',
@@ -45,6 +53,32 @@ function setBorderColor(borderColor) {
   ].forEach((e) => {
     document.querySelectorAll(e).forEach((element) => {
       element.style.outline = `1px solid ${borderColor}`;
+    });
+  });
+}
+
+// 적용된 setBorderColor 함수 제거
+function removeBorderColor() {
+  [
+    'div',
+    'span',
+    'ul',
+    'li',
+    'dd',
+    'dl',
+    'section',
+    'h1',
+    'a',
+    'img',
+    'form',
+    'button',
+    'header',
+    'footer',
+    'input',
+    'p',
+  ].forEach((e) => {
+    document.querySelectorAll(e).forEach((element) => {
+      element.style.outline = 'none';
     });
   });
 }
