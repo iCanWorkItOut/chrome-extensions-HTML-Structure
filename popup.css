@@ -14,13 +14,13 @@ button {
   text-align: left;
 }
 button::after {
-  content: "  border";
+  content: '  border';
 }
 button:last-child {
   border-bottom: none;
 }
 button:hover {
-  background-color: #eee;
+  background-color: #d5d5d5;
   font-weight: bold;
 }
 
@@ -28,6 +28,11 @@ button:hover {
   display: inline-block;
   width: 10px;
   height: 10px;
-  /* border: 1px solid black; */
   margin-right: 10px;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.clicked {
+  background-color: #eee;
 }
