@@ -1,5 +1,5 @@
 body {
-  width: 150px;
+  width: 130px;
   margin: 0;
 }
 
@@ -14,7 +14,7 @@ button {
   text-align: left;
 }
 button::after {
-  content: '  border';
+  content: ' border';
 }
 button:last-child {
   border-bottom: none;
